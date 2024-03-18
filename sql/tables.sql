@@ -9,8 +9,8 @@ CREATE TABLE `Permission` (
 );
 
 CREATE TABLE `Role_Detail` (
-  `role_id` int,
-  `permission_id` int,
+  `role_id` int NOT NULL,
+  `permission_id` int NOT NULL,
   PRIMARY KEY (`role_id`, `permission_id`)
 );
 
@@ -20,20 +20,22 @@ CREATE TABLE `User` (
   `password` varchar(20) NOT NULL,
   `email` varchar(50),
   `phone_number` varchar(15) NOT NULL,
-  `address` varchar(255),
-  `role_id` int,
-  `deleted` int
+  `address` varchar(255) NOT NULL,
+  `role_id` int NOT NULL,
+  `deleted` int NOT NULL DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 );
 
 CREATE TABLE `Cart` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `user_id` int
+  `user_id` int NOT NULL
 );
 
 CREATE TABLE `Cart_Detail` (
-  `cart_id` int,
-  `product_id` int,
-  `amount` int,
+  `cart_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `amount` int NOT NULL,
   PRIMARY KEY (`cart_id`, `product_id`)
 );
 
@@ -41,62 +43,68 @@ CREATE TABLE `Product` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `thumbnail` longblob NOT NULL,
-  `deleted` int
+  `deleted` int NOT NULL DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 );
 
 CREATE TABLE `Product_Detail` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `product_id` int,
-  `detail_name` varchar(50),
-  `price` int,
-  `description` longtext,
-  `amount` int,
-  `out_of_stock` int
+  `product_id` int NOT NULL,
+  `detail_name` varchar(50) NOT NULL,
+  `price` int NOT NULL,
+  `description` longtext NOT NULL,
+  `amount` int NOT NULL DEFAULT 0,
+  `out_of_stock` int NOT NULL DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 );
 
 CREATE TABLE `Product_Color` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `product_detail_id` int,
+  `product_detail_id` int NOT NULL,
   `image` longblob NOT NULL,
   `name` varchar(255) NOT NULL
 );
 
 CREATE TABLE `Category` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `product_id` int,
-  `name` varchar(50)
+  `product_id` int NOT NULL,
+  `name` varchar(50) NOT NULL
 );
 
 CREATE TABLE `Gallery` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `product_id` int,
+  `product_id` int NOT NULL,
   `image` longblob NOT NULL
 );
 
 CREATE TABLE `Order` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `user_id` int,
+  `user_id` int NOT NULL,
   `fullname` varchar(50) NOT NULL,
   `email` varchar(50),
   `phone_number` varchar(15) NOT NULL,
   `address` varchar(255) NOT NULL,
   `note` varchar(255),
   `order_date` datetime,
-  `total_price` int
+  `total_price` int NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 );
 
 CREATE TABLE `Order_Detail` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `order_id` int,
-  `product_id` int,
-  `price` int,
-  `amount` int,
-  `total_price` int
+  `order_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `price` int NOT NULL,
+  `amount` int NOT NULL,
+  `total_price` int NOT NULL
 );
 
 CREATE TABLE `Order_Status_Detail` (
-  `order_id` int UNIQUE,
-  `status_id` int,
+  `order_id` int UNIQUE NOT NULL,
+  `status_id` int NOT NULL,
   `date` datetime,
   PRIMARY KEY (`order_id`, `status_id`)
 );
@@ -108,32 +116,32 @@ CREATE TABLE `Order_Status` (
 
 CREATE TABLE `Feedback` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `user_id` int,
-  `fullname` varchar(50),
+  `user_id` int NOT NULL,
+  `fullname` varchar(50) NOT NULL,
   `email` varchar(50),
   `phone_number` varchar(15),
-  `content` varchar(255)
+  `content` varchar(255) NOT NULL
 );
 
 CREATE TABLE `Rating` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `user_id` int,
-  `product_id` int,
-  `stars` float,
-  `content` varchar(255)
+  `user_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `stars` float NOT NULL,
+  `content` varchar(255) NOT NULL
 );
 
 CREATE TABLE `Event` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(255),
-  `is_active` int,
-  `description` varchar(255) 
+  `name` varchar(255) NOT NULL,
+  `is_active` int NOT NULL DEFAULT 0,
+  `description` varchar(255) NOT NULL
 );
 
 CREATE TABLE `Discount` (
-  `product_id` int,
-  `event_id` int,
-  `percentage` float,
+  `product_id` int NOT NULL,
+  `event_id` int NOT NULL,
+  `percentage` float NOT NULL,
   PRIMARY KEY (`product_id`, `event_id`)
 );
 
