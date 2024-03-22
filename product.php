@@ -4,5 +4,5 @@ include("app/Controllers/View.php");
 $view = new View;
 
 $view->loadContent("include", "head");
-$view->loadContent("content", "home");
+$view->loadContent("content", "product");
 $view->loadContent("include", "tail");
