@@ -3,8 +3,8 @@
 session_start();
 
 ### CONFIGURATION FILES
-include("config/site.php");
-include("config/server.php");
+// include("config/site.php");
+// include("config/server.php");
 include("config/database.php");
 
 ### VIEW CLASS
