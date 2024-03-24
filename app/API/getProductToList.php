@@ -12,6 +12,15 @@
     }else{
         $pageNum = 1;
     }
+    // Tổng SP trong 1 trang
+    $itemsPerPage=8;
+    $countSql="SELECT count(*) as total FROM (SELECT id FROM product, product_detail WHERE product.deleted=0 
+                                            and id=product_detail.product_id and detail_id=1) t ";
+    $countResult=$controller->selectData($countSql);
+    $row=$countResult->fetch_assoc();
+    $totalPages=ceil($row['total']/ $itemsPerPage); // Tổng Pages
+
+
     $sql = "SELECT id,detail_id,name,detail_name,price,thumbnail FROM 
         (SELECT id,detail_id,name,price,detail_name,thumbnail,ROW_NUMBER() over(PARTITION BY detail_id) as row_num 
             FROM product,product_detail WHERE product.deleted= 0 and id=product_detail.product_id and detail_id=1) t 
@@ -33,5 +42,9 @@
             array_push( $res, $element);            
         }
       } 
-      echo json_encode($res);      
+
+    // Thêm totalPages vào mảng
+    $res['totalPages']=$totalPages;
+
+    echo json_encode($res);      
 
