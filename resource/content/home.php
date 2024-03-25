@@ -125,19 +125,16 @@ $GLOBALS["test"] = $controller->selectData($sql);
                     <h1 class="section__heading trending__heading">Trending Now</h1>
                     <div class="trending__list">
                         <!-- Trending__item 1 -->
-                        <?php
-                            foreach($GLOBALS["test"] as $cc) {
-                              echo '
-                              <a class="trending__item" href="product.php?product_id='.$cc["id"].'&variant=1">
+                              <a class="trending__item" href="">
                               <figure class="trending__item-img-wrap">
                                   <img
-                                      src="data:image/jpg;base64,'.base64_encode($cc["thumbnail"]).'"
+                                      src=""
                                       alt=""
                                       class="trending__item-img"
                                   />
                               </figure>
                               <div class="trending__info">
-                                  <h3 class="trending__item-name">'.$cc["name"].'</h3>
+                                  <h3 class="trending__item-name"></h3>
                                   <div class="trending__item-brand">
                                       <p class="trending__item-brand-name">Apple</p>
                                       <div class="stars">
@@ -162,18 +159,12 @@ $GLOBALS["test"] = $controller->selectData($sql);
                                   </div>
                               </div>
                           </a>
-                                  ';
-                            }
-                        ?>
-                        
-
-                        
                     </div>
                 </div>
             </section>
 
             <!-- Product -->
-            <section class="product">
+            <section id="product" class="product">
                 <div class="container">
                     <h1 class="section__heading hello">
                         Hello
@@ -182,18 +173,16 @@ $GLOBALS["test"] = $controller->selectData($sql);
                     </h1>
                     <div class="product__list">
                         <!-- Product item 1 -->
-                        <?php
-                        foreach($GLOBALS["test"] as $concac) {
-                          echo '
+<!--          
                           <article class="product__item">
                             <figure class="product__item-img-wrap">
                                 <img
-                                    src="data:image/jpg;base64,'.base64_encode($concac["thumbnail"]).'"
+                                    src="./assets/images/iphone-1.pjg"]).'"
                                     class="product__item-img"
                                     alt=""
                                 />
                             </figure>
-                            <h3 class="product__name">'. $concac["name"] .'</h3>
+                            <h3 class="product__name"></h3>
                             <div class="product__item-info-row">
                                 <span class="product__price">2000$</span>
                                 <div class="row-price-stars">
@@ -217,13 +206,17 @@ $GLOBALS["test"] = $controller->selectData($sql);
                                 </div>
                                 <button class="add-to-cart">Add to card</button>
                             </div>
-                        </article>
-                          ';
-                        }
-                        ?>
-                        
+                        </article> -->
+                    </div>
 
-                        
+                    <!-- pagination -->
+                     <div class="pagination">
+                        <ul class="pagination__product">
+                            <!-- <li class="pagination__product-item">1</li>
+                            <li class="pagination__product-item">2</li>
+                            <li class="pagination__product-item">3</li>
+                            <li class="pagination__product-item">4</li> -->
+                        </ul>
                     </div>
                 </div>
             </section>
