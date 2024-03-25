@@ -742,6 +742,30 @@ header {
 
 
 
+/* Product Detail Page */
+
+.product__page {
+    margin-top: 32px;
+}
+
+.product__page__images {
+    width: 58%;
+    height: 658px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product__page__image__slider {
+    border: 1px solid;
+    height: 100%;
+    width: 20%;
+}
+
+.product__page__image__display {
+    height: 100%;
+    width: calc(80% - 8px);
+    border: 1px solid;
+}
 
 /*
 TESTING
