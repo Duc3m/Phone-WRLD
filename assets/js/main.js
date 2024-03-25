@@ -18,28 +18,37 @@
 let currentPage = 1; // Trang hiện tại
 const itemsPerPage = 8; // Số item trên mỗi trang
 
-function fetchDataAndRender(page) {
+async function fetchDataAndRender(page) {
     console.log("Fetching data for page:", page);
-    fetch(
+    const response = await fetch(
         `./app/API/getProductToList.PHP?page=${page}&itemsPerPage=${itemsPerPage}`
-    )
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            // console.log(response.json())
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-            renderProduct(data); // Gọi hàm renderProduct và truyền dữ liệu từ API vào
-            console.log(data.totalPages);
-            renderPagination(data.totalPages); //Gọi hàm renderPagination
+    );
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+    const json = await response.json();
+    // console.log(json);
+    renderProduct(json); // Gọi hàm renderProduct và truyền dữ liệu từ API vào
+    // console.log(json.totalPages);
+    renderPagination(json.totalPages); //Gọi hàm renderPagination
+    scrollToTitleProduct(); // Cuộn trang lên đầu Product
+    
+    // .then((response) => {
+    //     if (!response.ok) {
+    //         throw new Error("Network response was not ok");
+    //     }
+    //     // console.log(response.json())
+    //     return response.json();
+    // })
+    // .then((data) => {
+    //     console.log(data);
+    //     renderProduct(data);
+    //     console.log(data.totalPages);
+    //     renderPagination(data.totalPages);
 
-            // Cuộn trang lên đầu Product
-            scrollToTitleProduct();
-        })
-        .catch((error) => console.error("Error fetching data:", error));
+    //
+    // })
+    // .catch((error) => console.error("Error fetching data:", error));
 }
 // Hàm cuộn lên đầu Product
 function scrollToTitleProduct() {
@@ -58,11 +67,12 @@ function renderProduct(data) {
         // Lặp qua các property của object data
         for (let key in data) {
             // Kiểm tra nếu key là một số
+            // console.log(key);
             if (!isNaN(key)) {
                 const product = data[key]; // Lấy thông tin sản phẩm từ property có tên là key
                 const productArticle = document.createElement("article");
                 productArticle.classList.add("product__item");
-
+                // productArticle.id = product.id;
                 productArticle.innerHTML = `
                     <figure class="product__item-img-wrap">
                         <img
@@ -95,7 +105,10 @@ function renderProduct(data) {
                         </div>
                         <button class="add-to-cart">Add to cart</button>
                     </div>`;
-
+                productArticle.onclick = () => {
+                    const url = window.location.href.split("?")[0];
+                    window.location = `${url}product.php?id=${product.id}`;
+                };
                 productList.appendChild(productArticle);
             }
         }
