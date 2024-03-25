@@ -1,32 +1,5 @@
-<?php
-include("app/Controllers/Controller.php");
-
-$controller = new Controller;
-
-//Get id from query string
-if(isset($_GET["product_id"]) && isset($_GET["variant"])) {
-    $productId = $_GET["product_id"];
-    $variantId = $_GET["variant"];
-}
-
-//SELECT SQL Query
-$selectProduct = "SELECT * FROM product WHERE id='".$productId."'";
-$selectVariant = "SELECT * FROM product_detail WHERE product_id='".$productId."' AND detail_id='".$variantId."'";
-$selectAllVariant = "SELECT * FROM product_detail WHERE product_id='".$productId."' ";
-
-//Select and fetch from database 
-$GLOBALS["selectedVariant"] = $controller->selectData($selectVariant);
-$GLOBALS["selectedProduct"] = $controller->selectData($selectProduct);
-
-$variant = $GLOBALS["selectedVariant"]->fetch_assoc();
-$product = $GLOBALS["selectedProduct"]->fetch_assoc();
-$allVariant = $controller->selectData($selectAllVariant)
-
-
-?>
-
 <!-- Product Detail -->
-<div class="container">
+<div class="container" id="product_detail_container">
     <div class="product__page">
         <div class="product__page__top">
             <div class="product__page__images">
