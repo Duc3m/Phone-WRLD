@@ -171,7 +171,7 @@
                             <i class="fa-solid fa-circle-xmark"></i>
                         </button>
                         <!-- Submit button -->
-                        <button type="submit" class="search__form-btn">
+                        <button class="search__form-btn">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </form>
