@@ -93,7 +93,7 @@
         <button class="back-to-top">&uarr;</button>
 
         <!-- JavaScripts -->
-        <script src="./assets/js/index.js"></script>
+        <script type="module" src="assets/js/index.js"></script>
         <script type="module" src="assets/js/main.js"></script>
         <script type="module"src="assets/js/product.js"></script>
     </body>
