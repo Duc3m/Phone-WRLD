@@ -181,6 +181,7 @@ header {
     color: var(--text-color-dark);
     font-size: 1.5rem;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .navbar__link-children:hover {

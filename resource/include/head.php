@@ -118,43 +118,35 @@
                     <nav class="navbar">
                         <ul class="navbar__list">
                             <li class="navbar__item">
-                                <a href="#" class="navbar__link">Products</a>
+                                <a href="index.php" class="navbar__link">Products</a>
                             </li>
                             <li class="navbar__item navbar__item-category">
-                                <a href="#" class="navbar__link">Category</a>
+                                <a href="" class="navbar__link" id="category-reset">Category</a>
                                 <img
                                     src="assets/icon/header-arrown.svg"
                                     alt=""
                                     class="header-arrown"
                                 />
                                 <ul class="navbar__link-item">
-                                    <li class="navbar__link-parent">
-                                        <a href="" class="navbar__link-children">
-                                            Apple
-                                        </a>
+                                    <!-- <li class="navbar__link-parent">
+                                        <span class="navbar__link-children">Apple</span>
                                     </li>
                                     <li class="navbar__link-parent">
-                                        <a href="" class="navbar__link-children">
-                                            SamSung
-                                        </a>
+                                        <span class="navbar__link-children">SamSung</span>
                                     </li>
                                     <li class="navbar__link-parent">
-                                        <a href="" class="navbar__link-children">
-                                            Xiaomi
-                                        </a>
+                                        <span class="navbar__link-children">Xiaomi</span>
                                     </li>
                                     <li class="navbar__link-parent">
-                                        <a href="" class="navbar__link-children">
-                                            Oppo
-                                        </a>
-                                    </li>
+                                        <span class="navbar__link-children">Oppo</span>
+                                    </li> -->
                                 </ul>
                             </li>
                             <li class="navbar__item">
-                                <a href="#" class="navbar__link">About</a>
+                                <a href="" class="navbar__link">About</a>
                             </li>
                             <li class="navbar__item">
-                                <a href="#" class="navbar__link">Contact us</a>
+                                <a href="" class="navbar__link">Contact us</a>
                             </li>
                         </ul>
                     </nav>
