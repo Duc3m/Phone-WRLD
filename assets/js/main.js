@@ -32,7 +32,7 @@ async function fetchDataAndRender(page) {
     // console.log(json.totalPages);
     renderPagination(json.totalPages); //Gọi hàm renderPagination
     scrollToTitleProduct(); // Cuộn trang lên đầu Product
-    
+
     // .then((response) => {
     //     if (!response.ok) {
     //         throw new Error("Network response was not ok");
@@ -76,6 +76,7 @@ function renderProduct(data) {
                 productArticle.innerHTML = `
                     <figure class="product__item-img-wrap">
                         <img
+                            
                             src="data:image/png;base64,${product.thumbnail}" 
                             class="product__item-img"
                             alt=""
@@ -83,7 +84,9 @@ function renderProduct(data) {
                     </figure>
                     <h3 class="product__name">${product.name}</h3>
                     <div class="product__item-info-row">
-                        <span class="product__price">${product.price}</span>
+                        <span class="product__price">${Number.parseInt(
+                            product.price
+                        ).toLocaleString("en-us")}đ</span>
                         <div class="row-price-stars">
                             <span class="product__num-star">5</span>
                             <div class="product__star">
@@ -103,11 +106,20 @@ function renderProduct(data) {
                                 </svg>
                             </div>
                         </div>
-                        <button class="add-to-cart">Add to cart</button>
+                      
                     </div>`;
                 productArticle.onclick = () => {
-                    const url = window.location.href.split("?")[0];
-                    window.location = `${url}product.php?id=${product.id}`;
+                    let url = window.location.href.split("?")[0].split("/");
+                    // window.location = `${url}product.php?id=${product.id}`;
+                    console.log(url);
+                    if (url[url.length - 1] == "index.php") {
+                        url.pop();
+                        url = url.join("/");
+                        window.location = `${url}/product.php?id=${product.id}`;
+                    } else {
+                        url = url.join("/");
+                        window.location = `${url}product.php?id=${product.id}`;
+                    }
                 };
                 productList.appendChild(productArticle);
             }

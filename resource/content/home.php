@@ -1,17 +1,4 @@
-<?php
-include("app/Controllers/Controller.php");
 
-$controller = new Controller;
-
-
-
-$sql = "SELECT * FROM product";
-
-$GLOBALS["test"] = $controller->selectData($sql);
-
-
-
-?>
 
 <!-- Hero -->
 <div class="hero">

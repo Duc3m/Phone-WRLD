@@ -110,7 +110,7 @@
             <div class="container">
                 <div class="header__inner">
                     <!-- Logo -->
-                    <a href="#">
+                    <a href="index.php">
                         <img class="logo" src="assets/icon/Logo.svg" alt="" />
                     </a>
 
