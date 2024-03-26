@@ -31,8 +31,12 @@ function prevSlide() {
 }
 
 // Xử lý khi click vào nút Next hoặc Prev
-document.querySelector(".review__control-left").addEventListener("click", prevSlide);
-document.querySelector(".review__control-right").addEventListener("click", nextSlide);
+document
+    .querySelector(".review__control-left")
+    .addEventListener("click", prevSlide);
+document
+    .querySelector(".review__control-right")
+    .addEventListener("click", nextSlide);
 
 // Xử lý khi ấn phím mũi trên Keyboard
 document.addEventListener("keydown", function (e) {
@@ -82,7 +86,7 @@ dots.addEventListener("click", (e) => {
 });
 
 // Xử lý lặp lại sau 3s
-setInterval(nextSlide, 3000);
+// setInterval(nextSlide, 3000);
 
 //=========== Xử lý nút Back to top ===========
 window.onscroll = () => {

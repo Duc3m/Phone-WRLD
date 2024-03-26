@@ -18,10 +18,13 @@
 let currentPage = 1; // Trang hiện tại
 const itemsPerPage = 8; // Số item trên mỗi trang
 
-async function fetchDataAndRender(page) {
+// ============================= fetch and render =======================
+async function fetchDataAndRender(page, search = "") {
     console.log("Fetching data for page:", page);
     const response = await fetch(
-        `./app/API/getProductToList.PHP?page=${page}&itemsPerPage=${itemsPerPage}`
+        `./app/API/getProductToList.PHP?page=${page}&itemsPerPage=${itemsPerPage}${
+            search == "" ? "" : `&key=${search}`
+        }`
     );
     if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -134,36 +137,34 @@ function renderPagination(totalPages) {
     if (paginationContainer) {
         paginationContainer.innerHTML = ""; // Xóa nội dung cũ trong paginationContainer
 
-        if (totalPages <= 1) {
-            paginationContainer.style.display = "none";
-        } else {
-            for (let i = 1; i <= totalPages; i++) {
-                const pageItem = document.createElement("li");
-                pageItem.classList.add("pagination__product-item");
+        if (totalPages <= 1) return;
+        for (let i = 1; i <= totalPages; i++) {
+            const pageItem = document.createElement("li");
+            pageItem.classList.add("pagination__product-item");
 
-                // const pageLink = document.createElement("a");
-                // pageLink.classList.add("pagination__link");
-                pageItem.textContent = i;
-                // pageLink.href = "#product";
-                // pageItem.appendChild(pageLink);
+            // const pageLink = document.createElement("a");
+            // pageLink.classList.add("pagination__link");
+            pageItem.textContent = i;
+            // pageLink.href = "#product";
+            // pageItem.appendChild(pageLink);
 
-                pageItem.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    currentPage = i;
-                    fetchDataAndRender(currentPage);
-                    activePageItem(pageItem);
-                    scrollToProductHeader(); // Cuộn lên đến tiêu đề sản phẩm
-                });
+            pageItem.addEventListener("click", (e) => {
+                e.preventDefault();
+                currentPage = i;
+                fetchDataAndRender(currentPage);
+                activePageItem(pageItem);
+                scrollToProductHeader(); // Cuộn lên đến tiêu đề sản phẩm
+            });
 
-                if (i === currentPage) {
-                    pageItem.classList.add("active"); // Thêm class active cho trang hiện tại
-                }
-
-                paginationContainer.appendChild(pageItem);
+            if (i === currentPage) {
+                pageItem.classList.add("active"); // Thêm class active cho trang hiện tại
             }
+
+            paginationContainer.appendChild(pageItem);
         }
     }
 }
+
 // Hàm active khi click Page
 function activePageItem(pageItem) {
     // Lấy tất cả các phần tử trang
@@ -178,5 +179,25 @@ function activePageItem(pageItem) {
 
 // Gọi hàm để lấy dữ liệu và render sản phẩm khi trang web được tải
 document.addEventListener("DOMContentLoaded", () => {
-    fetchDataAndRender(currentPage);
+    fetchDataAndRender(currentPage, "");
 });
+
+// =================== Search ===================
+
+const resetBtn = document.querySelector(".search__form-close");
+resetBtn.onclick = () => {
+    fetchDataAndRender(currentPage, "");
+};
+const searchProduct = document.querySelector(".search__form-input");
+let typingTimer;
+let doneTypingInterval = 100;
+searchProduct.oninput = (e) => {
+    // console.log(searchProduct.value);
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(doneTyping, doneTypingInterval);
+};
+
+function doneTyping() {
+    console.log(searchProduct.value);
+    fetchDataAndRender(currentPage, searchProduct.value);
+}
