@@ -230,3 +230,4 @@ function doneTyping() {
     console.log(searchProduct.value);
     fetchDataAndRender(firstPage, searchProduct.value);
 }
+

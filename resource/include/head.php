@@ -178,7 +178,7 @@
                             <i class="fa-solid fa-right-to-bracket"></i>
                         </div>
                         <div class="header__action-item header__action-sign-up">
-                            <i class="fa-solid fa-user-secret"></i>
+                           <a href="login.php"><i class="fa-solid fa-user-secret"></i></a>
                         </div>
                     </div>
                 </div>
