@@ -21,6 +21,7 @@ body {
 /* Common */
 a {
     text-decoration: none;
+    color: #000;
 }
 
 h1,
@@ -181,6 +182,7 @@ header {
     color: var(--text-color-dark);
     font-size: 1.5rem;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .navbar__link-children:hover {
@@ -940,4 +942,95 @@ header {
 
 .product__page__detail__content {
     margin-top: 24px;
+}
+
+/* ============= CSS LOGIN =================== */
+.container_login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+}
+
+.box {
+    background: #fdfdfd;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1),
+        0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.form-box {
+    width: 450px;
+    margin: 0 10px;
+}
+
+.head {
+    font-size: 25px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 10px;
+}
+
+.form-login .group {
+    margin-bottom: 10px;
+}
+
+.input-group {
+    margin: 20px 0;
+}
+input {
+    height: 40px;
+    width: 100%;
+    font-size: 16px;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.btn-input {
+    min-width: 100%;
+    height: 35px;
+    background: rgba(76, 68, 182, 0.808);
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+.btn-input:hover {
+    opacity: 0.82;
+}
+
+.login-register-text {
+    margin-bottom: 15px;
+}
+
+/* ============================ HOME ======================*/
+.nav {
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    line-height: 60px;
+    z-index: 100;
+}
+
+/* Message in form*/
+
+.message {
+    text-align: center;
+    background: #f9eded;
+    padding: 15px 0;
+    border: 1px solid #699053;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: red;
 }

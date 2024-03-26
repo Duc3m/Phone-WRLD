@@ -1,30 +1,59 @@
-// let productList;
+//=========== Render Category List ======
+async function fetchCategoryList() {
+    const res = await fetch(
+        "http://localhost/Phone_WRLD/app/API/getCategoryList.php"
+    );
+    const json = await res.json();
+    renderCategoryList(json);
+}
 
-// const getData = async (pagenumber = 1) => {
-//     const response = await fetch(
-//         `http://localhost/Phone_WRLD/app/API/getProductToList.php?page=${pagenumber}`
-//     );
-//     const json = await response.json();
-//     return json;
-// };
+function renderCategoryList(data) {
+    const categoryContainer = document.querySelector(".navbar__link-item");
+    // console.log(data);
+    categoryContainer.innerHTML = data
+        .map(
+            (item) => `<li class="navbar__link-parent">
+                                        <span class="navbar__link-children">${item.name}</span>
+                                    </li>`
+        )
+        .join("");
 
-// const main = async () => {
-//     productList = await getData();
-//     console.log(productList);
-// };
-// main();
+    // ================= Render Category ==================
 
-// =========== Render Products ===========
-let currentPage = 1; // Trang hiện tại
-const itemsPerPage = 8; // Số item trên mỗi trang
+    const categoryList = document.getElementsByClassName(
+        "navbar__link-children"
+    );
+    const resetCategory = document.querySelector("#category-reset");
+
+    resetCategory.onclick = () => {
+        // currCategory = "";
+        searchProduct.value = "";
+        fetchDataAndRender(firstPage, "");
+    };
+    // console.log(categoryList);
+    for (const item of categoryList) {
+        item.onclick = () => {
+            // console.log(item.textContent);
+            // currCategory = item.textContent;
+            searchProduct.value = "";
+            fetchDataAndRender(firstPage, "", item.textContent);
+        };
+    }
+}
+fetchCategoryList();
 
 // ============================= fetch and render =======================
-async function fetchDataAndRender(page, search = "") {
+let firstPage = 1;
+let currentPage = 1; // Trang hiện tại
+const itemsPerPage = 8; // Số item trên mỗi trang
+// let currCategory = "";
+
+// Ham fetchDataAndRender
+async function fetchDataAndRender(page, search = "", category = "") {
+    currentPage = page;
     console.log("Fetching data for page:", page);
     const response = await fetch(
-        `./app/API/getProductToList.PHP?page=${page}&itemsPerPage=${itemsPerPage}${
-            search == "" ? "" : `&key=${search}`
-        }`
+        `./app/API/getProductToList.PHP?page=${page}&itemsPerPage=${itemsPerPage}&key=${search}&category=${category}`
     );
     if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -60,7 +89,7 @@ function scrollToTitleProduct() {
         titleProduct.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 }
-// Hàm renderProduct
+// =========== Render Products ===========
 function renderProduct(data) {
     console.log("Rendering products:", data);
     const productList = document.querySelector(".product__list");
@@ -179,7 +208,7 @@ function activePageItem(pageItem) {
 
 // Gọi hàm để lấy dữ liệu và render sản phẩm khi trang web được tải
 document.addEventListener("DOMContentLoaded", () => {
-    fetchDataAndRender(currentPage, "");
+    fetchDataAndRender(currentPage, "", "");
 });
 
 // =================== Search ===================
@@ -191,7 +220,7 @@ resetBtn.onclick = () => {
 const searchProduct = document.querySelector(".search__form-input");
 let typingTimer;
 let doneTypingInterval = 100;
-searchProduct.oninput = (e) => {
+searchProduct.oninput = () => {
     // console.log(searchProduct.value);
     clearTimeout(typingTimer);
     typingTimer = setTimeout(doneTyping, doneTypingInterval);
@@ -199,5 +228,6 @@ searchProduct.oninput = (e) => {
 
 function doneTyping() {
     console.log(searchProduct.value);
-    fetchDataAndRender(currentPage, searchProduct.value);
+    fetchDataAndRender(firstPage, searchProduct.value);
 }
+
