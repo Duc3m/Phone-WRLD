@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer id="footer" class="footer">
             <div class="container">
                 <div class="footer__row">
                     <!-- column-1 -->

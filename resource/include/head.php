@@ -146,7 +146,7 @@
                                 <a href="" class="navbar__link">About</a>
                             </li>
                             <li class="navbar__item">
-                                <a href="" class="navbar__link">Contact us</a>
+                                <a href="#footer" class="navbar__link">Contact us</a>
                             </li>
                         </ul>
                     </nav>

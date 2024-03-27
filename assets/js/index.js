@@ -86,7 +86,7 @@ dots.addEventListener("click", (e) => {
 });
 
 // Xử lý lặp lại sau 3s
-// setInterval(nextSlide, 3000);
+// setInterval(nextSlide, 3000);z
 
 //=========== Xử lý nút Back to top ===========
 window.onscroll = () => {

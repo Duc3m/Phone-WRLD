@@ -112,8 +112,7 @@
                     <h1 class="section__heading trending__heading">Trending Now</h1>
                     <div class="trending__list">
                         <!-- Trending__item 1 -->
-                              <a class="trending__item" href="">
-                              <figure class="trending__item-img-wrap">
+                              <!-- <figure class="trending__item-img-wrap">
                                   <img
                                       src=""
                                       alt=""
@@ -144,8 +143,7 @@
                                           </div>
                                       </div>
                                   </div>
-                              </div>
-                          </a>
+                              </div> -->
                     </div>
                 </div>
             </section>

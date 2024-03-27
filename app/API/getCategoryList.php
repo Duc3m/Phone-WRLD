@@ -6,7 +6,7 @@
 
     $controller = new controller;
 
-    $sql = "SELECT name FROM category";
+    $sql = "SELECT * FROM category";
 
     $result = $controller->selectData($sql);
 

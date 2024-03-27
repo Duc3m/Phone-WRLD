@@ -14,6 +14,7 @@ const fetchDataForDetail = async (detailId = 1) => {
 };
 
 function rederProductDetail(data) {
+    console.log(data);
     const product_infomation = document.querySelector(
         ".product__page__top__right"
     );

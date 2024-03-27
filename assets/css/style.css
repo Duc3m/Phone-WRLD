@@ -412,6 +412,7 @@ header {
     border-radius: 10px;
     background: #f6f5ff;
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.05);
+    text-align: center;
 }
 
 .trending__item-img-wrap {
@@ -447,6 +448,7 @@ header {
     margin-top: 5px;
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 .trending__item-brand-name {
